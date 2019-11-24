@@ -1,0 +1,7 @@
+.Header {
+      display: flex !important;
+    justify-content: center !important;
+    align-items: center;
+    margin: 5px 0;
+    color: blue;
+}
