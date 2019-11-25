@@ -120,7 +120,7 @@ class Answers extends Component {
       if(!this.props.isLastQuestion) {
         nextButton = <ActionButton clickAction={this.props.nextQuestion} buttonLabel='Next Question'/>
       } else {
-        nextButton = <ActionButton clickAction={this.props.nextQuestion} buttonLabel='Finish'/>
+        nextButton = <ActionButton clickAction={this.props.showResult} buttonLabel='Finish'/>
       }
     }
 

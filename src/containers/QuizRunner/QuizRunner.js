@@ -3,6 +3,7 @@ import Auxillury from '../../hoc/Auxillury'
 import QuizNotification from '../../components/QuizParts/QuizNotification/QuizNotification'
 import Question from '../../components/QuizParts/Question/Question'
 import Answers from '../../components/QuizParts/Answers/Answers'
+import Modal from '../../components/UI/Modal/Modal'
 import styles from './QuizRunner.module.css'
 
 class QuizRunner extends Component {
@@ -45,12 +46,17 @@ class QuizRunner extends Component {
        rightAnswer: '1'
      }
    ],
-    currentQuestion:0
+    currentQuestion:0,
+    showResultPopup: false
   }
 
   nextQuestion = (e) => {
     const currentQuestion = this.state.currentQuestion + 1;
     this.setState({currentQuestion: currentQuestion});
+  }
+
+  showResult = (e) => {
+    this.setState({showResultPopup: true});
   }
 
   startQuiz = (e) => {
@@ -66,13 +72,17 @@ class QuizRunner extends Component {
       return(
         <Auxillury>
           <main>
+            <Modal show={this.state.showResultPopup}>
+              <div>Congratulations!  You have successfully finished the quiz.</div>
+            </Modal>
 
             <Question questionText={this.state.questions[this.state.currentQuestion].questionText} />
             <Answers answers={this.state.questions[this.state.currentQuestion].answers}
                 rightAnswer={this.state.questions[this.state.currentQuestion].rightAnswer}
                 nextQuestion={this.nextQuestion}
                 questionId={this.state.questions[this.state.currentQuestion].questionId}
-                isLastQuestion = {isLastQuestion}/>
+                isLastQuestion = {isLastQuestion}
+                showResult={this.showResult}/>
           </main>
         </Auxillury>
       )
