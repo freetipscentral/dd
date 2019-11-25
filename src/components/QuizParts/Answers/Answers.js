@@ -89,17 +89,20 @@ class Answers extends Component {
 
   clickAction = (e) => {
     let color = '#F44336';
-    if(e.target.id === this.props.rightAnswer) {
-      color = '#4CAF50';
-    }
-    let i = e.target.id;
-    let oldStyles = { ...this.state.ansStyles };
-    const indivStyle = oldStyles[i-1];
-    const oldIndivStyle = {...indivStyle};
+    if(!this.state.answered){
+      if(e.target.id === this.props.rightAnswer) {
+        color = '#4CAF50';
+      }
+      let i = e.target.id;
+      let oldStyles = { ...this.state.ansStyles };
+      const indivStyle = oldStyles[i-1];
+      const oldIndivStyle = {...indivStyle};
 
-    oldIndivStyle['backgroundColor'] = color;
-    oldStyles[i-1] = oldIndivStyle;
-    this.setState({ansStyles: oldStyles, answered: true});
+      oldIndivStyle['backgroundColor'] = color;
+      oldStyles[i-1] = oldIndivStyle;
+      this.setState({ansStyles: oldStyles, answered: true});
+    }
+
   }
 
   render() {

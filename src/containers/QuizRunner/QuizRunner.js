@@ -47,7 +47,8 @@ class QuizRunner extends Component {
      }
    ],
     currentQuestion:0,
-    showResultPopup: false
+    showResultPopup: false,
+    totalCorrectAnswers : 0
   }
 
   nextQuestion = (e) => {
@@ -63,6 +64,10 @@ class QuizRunner extends Component {
     this.setState({quizStarted: true});
   }
 
+  cancelPopupHandler = () => {
+    this.setState({showResultPopup: false, currentQuestion:0, totalCorrectAnswers:0});
+  }
+
   render() {
       let isLastQuestion = this.state.currentQuestion + 1 === this.state.questions.length;
       if(!this.state.quizStarted) {
@@ -72,8 +77,8 @@ class QuizRunner extends Component {
       return(
         <Auxillury>
           <main>
-            <Modal show={this.state.showResultPopup}>
-              <div>Congratulations!  You have successfully finished the quiz.</div>
+            <Modal show={this.state.showResultPopup} onCancel={this.cancelPopupHandler}>
+              <div>Congratulations!  You scored {this.state.totalCorrectAnswers} out of {this.state.questions.length}</div>
             </Modal>
 
             <Question questionText={this.state.questions[this.state.currentQuestion].questionText} />
