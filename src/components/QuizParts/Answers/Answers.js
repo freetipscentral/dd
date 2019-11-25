@@ -92,6 +92,7 @@ class Answers extends Component {
     if(!this.state.answered){
       if(e.target.id === this.props.rightAnswer) {
         color = '#4CAF50';
+        this.props.updateCorrectAnswers();
       }
       let i = e.target.id;
       let oldStyles = { ...this.state.ansStyles };

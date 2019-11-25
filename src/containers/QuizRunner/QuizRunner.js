@@ -68,6 +68,12 @@ class QuizRunner extends Component {
     this.setState({showResultPopup: false, currentQuestion:0, totalCorrectAnswers:0});
   }
 
+  updateCorrectAnswers = (e) => {
+    let currentCorrectAnswers = this.state.totalCorrectAnswers;
+    let updateCorrectAnswers = currentCorrectAnswers + 1;
+    this.setState({totalCorrectAnswers:updateCorrectAnswers});
+  }
+
   render() {
       let isLastQuestion = this.state.currentQuestion + 1 === this.state.questions.length;
       if(!this.state.quizStarted) {
@@ -87,7 +93,8 @@ class QuizRunner extends Component {
                 nextQuestion={this.nextQuestion}
                 questionId={this.state.questions[this.state.currentQuestion].questionId}
                 isLastQuestion = {isLastQuestion}
-                showResult={this.showResult}/>
+                showResult={this.showResult}
+                updateCorrectAnswers={this.updateCorrectAnswers}/>
           </main>
         </Auxillury>
       )
