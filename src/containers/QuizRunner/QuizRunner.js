@@ -16,10 +16,10 @@ class QuizRunner extends Component {
         questionId:1,
         questionText: "What is Docker",
         answers : [
-          {label: 'Salad', type: 'salad'},
-          {label: 'Bacon', type: 'bacon'},
-          {label: 'Meat', type: 'meat5'},
-          {label: 'Cheese', type: 'cheese'}
+          {label: 'Docking station for Apple products'},
+          {label: 'A platform as a service product'},
+          {label: 'Propreity AWS product to show current clients connected to AWS'},
+          {label: 'All of the above'}
         ],
         rightAnswer: '2'
      },
@@ -27,10 +27,10 @@ class QuizRunner extends Component {
        questionId:2,
        questionText: "What is EC2",
        answers : [
-         {label: 'A Short Circuit', type: 'salad'},
-         {label: 'Amazon movie', type: 'bacon'},
-         {label: 'Elastic Cloud Comppute', type: 'meat'},
-         {label: 'File Extension', type: 'cheese'}
+         {label: 'A Short Circuit'},
+         {label: 'Amazon movie'},
+         {label: 'Elastic Cloud Compute'},
+         {label: 'File Extension'}
        ],
        rightAnswer: '3'
      },
@@ -38,12 +38,23 @@ class QuizRunner extends Component {
        questionId:3,
        questionText: "What is Cloud Watch",
        answers : [
-         {label: 'A Logging mechanism in AWS', type: 'salad'},
-         {label: 'Drone Technology', type: 'bacon'},
-         {label: 'Amazon movie', type: 'meat'},
-         {label: 'Latest binoculars launched by Amazon', type: 'cheese'}
+         {label: 'A Logging mechanism in AWS'},
+         {label: 'Drone Technology'},
+         {label: 'Amazon movie'},
+         {label: 'Latest binoculars launched by Amazon'}
        ],
        rightAnswer: '1'
+     },
+     {
+       questionId:4,
+       questionText: "What is API Gateway",
+       answers : [
+         {label: 'Allows creating of APIs'},
+         {label: 'Allows caching of API responses'},
+         {label: 'Allows monitoring and securing REST and WebSocket APIs at any scale.'},
+         {label: 'All of the above'}
+       ],
+       rightAnswer: '4'
      }
    ],
     currentQuestion:0,
