@@ -117,29 +117,32 @@ class Answers extends Component {
 
     let nextButton = null;
     if(this.state.answered) {
-      nextButton = <ActionButton clickAction={this.props.nextQuestion} buttonLabel='Next Question'/>
+      if(!this.props.isLastQuestion) {
+        nextButton = <ActionButton clickAction={this.props.nextQuestion} buttonLabel='Next Question'/>
+      } else {
+        nextButton = <ActionButton clickAction={this.props.nextQuestion} buttonLabel='Finish'/>
+      }
     }
 
     return (
       <Container fixed>
-      <Grid
-        container
-        direction="column"
-        justify="center"
-        alignItems="center"
-        spacing={0}
-      >
-      {answerSet}
-      <Grid item xs={12} justify="center" spacing={0}>
-        <Grid container justify="center" spacing={0}>
-          {nextButton}
+        <Grid
+          container
+          direction="column"
+          justify="center"
+          alignItems="center"
+          spacing={0}
+        >
+          {answerSet}
+          <Grid item xs={12} justify="center" spacing={0}>
+            <Grid container justify="center" spacing={0}>
+              {nextButton}
+            </Grid>
+          </Grid>
         </Grid>
-      </Grid>
-      </Grid>
       </Container>
     )
   }
-
 }
 
 export default Answers;

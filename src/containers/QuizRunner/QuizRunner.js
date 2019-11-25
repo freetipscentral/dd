@@ -8,7 +8,7 @@ import styles from './QuizRunner.module.css'
 class QuizRunner extends Component {
   state = {
     quizStarted: false,
-    quizHeader: 'General AWS Quiz1',
+    quizHeader: 'General AWS Quiz',
     quizDetails: 'S3 is one of the most important topics in AWS cloud.  This quiz will test you S3 knowledge.',
     questions: [
       {
@@ -58,6 +58,7 @@ class QuizRunner extends Component {
   }
 
   render() {
+      let isLastQuestion = this.state.currentQuestion + 1 === this.state.questions.length;
       if(!this.state.quizStarted) {
         return (<QuizNotification headerText={this.state.quizHeader} startQuiz={this.startQuiz}
           info={this.state.quizDetails}/>)
@@ -70,8 +71,8 @@ class QuizRunner extends Component {
             <Answers answers={this.state.questions[this.state.currentQuestion].answers}
                 rightAnswer={this.state.questions[this.state.currentQuestion].rightAnswer}
                 nextQuestion={this.nextQuestion}
-                questionId={this.state.questions[this.state.currentQuestion].questionId}/>
-
+                questionId={this.state.questions[this.state.currentQuestion].questionId}
+                isLastQuestion = {isLastQuestion}/>
           </main>
         </Auxillury>
       )
