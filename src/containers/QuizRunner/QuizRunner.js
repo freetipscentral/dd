@@ -55,6 +55,28 @@ class QuizRunner extends Component {
          {label: 'All of the above'}
        ],
        rightAnswer: '4'
+     },
+     {
+       questionId:5,
+       questionText: "Which of the following is a message queue or transaction system for distributed Internet-based applications?",
+       answers : [
+         {label: 'Amazon Elastic Compute Cloud'},
+         {label: 'Amazon Simple Queue Service'},
+         {label: 'Amazon Simple Notification Service'},
+         {label: 'Amazon Simple Storage System'}
+       ],
+       rightAnswer: '2'
+     },
+     {
+       questionId:6,
+       questionText: "Which of the following is a Web service that can publish messages from an application and deliver them to other applications or to subscribers?",
+       answers : [
+         {label: 'Amazon Elastic Compute Cloud'},
+         {label: 'Amazon Simple Queue Service'},
+         {label: 'Amazon Simple Notification Service'},
+         {label: 'Amazon Simple Storage System'}
+       ],
+       rightAnswer: '3'
      }
    ],
     currentQuestion:0,
