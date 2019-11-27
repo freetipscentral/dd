@@ -15,7 +15,8 @@ class Answers extends Component {
           backgroundColor: '#008CBA',
           padding: '20px',
           with: '50%',
-          flex: 1
+          flex: 1,
+          borderRadius: '10px'
         },
         {
          margin: '20px',
@@ -24,7 +25,8 @@ class Answers extends Component {
          backgroundColor: '#008CBA',
          padding: '20px',
          with: '50%',
-         flex: 1
+         flex: 1,
+         borderRadius: '10px'
        },
        {
         margin: '20px',
@@ -34,7 +36,8 @@ class Answers extends Component {
         backgroundColor: '#008CBA',
         padding: '20px',
         with: '50%',
-        flex: 1
+        flex: 1,
+        borderRadius: '10px'
       },
       {
        margin: '20px',
@@ -44,7 +47,8 @@ class Answers extends Component {
        backgroundColor: '#008CBA',
        padding: '20px',
        with: '50%',
-       flex: 1
+       flex: 1,
+       borderRadius: '10px'
       }
      ],
     answered: false
@@ -59,7 +63,8 @@ class Answers extends Component {
        backgroundColor: '#008CBA',
        padding: '20px',
        with: '50%',
-       flex: 1
+       flex: 1,
+       borderRadius: '10px'
      },
      {
       margin: '20px',
@@ -68,7 +73,8 @@ class Answers extends Component {
       backgroundColor: '#008CBA',
       padding: '20px',
       with: '50%',
-      flex: 1
+      flex: 1,
+      borderRadius: '10px'
     },
     {
      margin: '20px',
@@ -77,7 +83,8 @@ class Answers extends Component {
      backgroundColor: '#008CBA',
      padding: '20px',
      with: '50%',
-     flex: 1
+     flex: 1,
+     borderRadius: '10px'
    },
    {
     margin: '20px',
@@ -87,7 +94,8 @@ class Answers extends Component {
     backgroundColor: '#008CBA',
     padding: '20px',
     with: '50%',
-    flex: 1
+    flex: 1,
+    borderRadius: '10px'
    }
   ];
   if(nextProps.questionId !== this.props.questionId){
