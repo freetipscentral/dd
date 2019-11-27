@@ -9,38 +9,42 @@ import Container from '@material-ui/core/Container';
 class Answers extends Component {
   state = {
          ansStyles: [{
-          margin: '40px',
+          margin: '20px',
           border: '1px solid green',
           color: 'white',
           backgroundColor: '#008CBA',
           padding: '20px',
-          with: '50%'
+          with: '50%',
+          flex: 1
         },
         {
-         margin: '40px',
+         margin: '20px',
          border: '1px solid green',
          color: 'white',
          backgroundColor: '#008CBA',
          padding: '20px',
-         with: '50%'
+         with: '50%',
+         flex: 1
        },
        {
-        margin: '40px',
+        margin: '20px',
         border: '1px solid green',
         borderRadius: '25px !important',
         color: 'white',
         backgroundColor: '#008CBA',
         padding: '20px',
-        with: '50%'
+        with: '50%',
+        flex: 1
       },
       {
-       margin: '40px',
+       margin: '20px',
        border: '1px solid green',
        borderRadius: '25px !important',
        color: 'white',
        backgroundColor: '#008CBA',
        padding: '20px',
-       with: '50%'
+       with: '50%',
+       flex: 1
       }
      ],
     answered: false
@@ -49,37 +53,41 @@ class Answers extends Component {
   componentWillReceiveProps(nextProps){
       const answered = false;
       const styles = [{
-       margin: '40px',
+       margin: '20px',
        border: '1px solid green',
        color: 'white',
        backgroundColor: '#008CBA',
        padding: '20px',
-       with: '50%'
+       with: '50%',
+       flex: 1
      },
      {
-      margin: '40px',
+      margin: '20px',
       border: '1px solid green',
       color: 'white',
       backgroundColor: '#008CBA',
       padding: '20px',
-      with: '50%'
+      with: '50%',
+      flex: 1
     },
     {
-     margin: '40px',
+     margin: '20px',
      border: '1px solid green',
      color: 'white',
      backgroundColor: '#008CBA',
      padding: '20px',
-     with: '50%'
+     with: '50%',
+     flex: 1
    },
    {
-    margin: '40px',
+    margin: '20px',
     border: '1px solid green',
     borderRadius: '25px !important',
     color: 'white',
     backgroundColor: '#008CBA',
     padding: '20px',
-    with: '50%'
+    with: '50%',
+    flex: 1
    }
   ];
   if(nextProps.questionId !== this.props.questionId){
@@ -130,20 +138,14 @@ class Answers extends Component {
 
     return (
       <Container fixed>
-        <Grid
-          container
-          direction="column"
-          justify="center"
-          alignItems="center"
-          spacing={0}
-        >
+        <div className={styles.answersWrapper}>
           {answerSet}
           <Grid item xs={12} justify="center" spacing={0}>
             <Grid container justify="center" spacing={0}>
               {nextButton}
             </Grid>
           </Grid>
-        </Grid>
+        </div>
       </Container>
     )
   }
