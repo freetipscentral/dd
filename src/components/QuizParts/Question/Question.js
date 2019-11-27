@@ -10,8 +10,8 @@ const quesition = (props) => {
       justify="center"
       alignItems="center"
     >
-      <h2 className={styles.Question}>{props.questionText}</h2>
-    </Grid>  
+      <h3 className={styles.Question}>{props.questionText}</h3>
+    </Grid>
   )
 }
 
