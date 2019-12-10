@@ -1,11 +1,11 @@
 import React from 'react';
 import Layout from './components/Layout/Layout';
-import QuizRunner from './containers/QuizRunner/QuizRunner';
+import QuizSelector from './containers/QuizSelector/QuizSelector';
 
 function App() {
   return (
     <Layout>
-        <QuizRunner />
+        <QuizSelector />
     </Layout>
   );
 }

@@ -5,6 +5,8 @@ import Question from '../../components/QuizParts/Question/Question'
 import Answers from '../../components/QuizParts/Answers/Answers'
 import Modal from '../../components/UI/Modal/Modal'
 import styles from './QuizRunner.module.css'
+import axios from 'axios'; 
+import QuizOptions from '../../components/QuizOptions/QuizOptions'
 
 class QuizRunner extends Component {
   state = {
@@ -99,7 +101,7 @@ class QuizRunner extends Component {
 
   cancelPopupHandler = () => {
     this.setState({showResultPopup: false, currentQuestion:0, totalCorrectAnswers:0});
-  }
+  } 
 
   updateCorrectAnswers = (e) => {
     let currentCorrectAnswers = this.state.totalCorrectAnswers;
@@ -107,19 +109,19 @@ class QuizRunner extends Component {
     this.setState({totalCorrectAnswers:updateCorrectAnswers});
   }
 
-  render() {
-      let isLastQuestion = this.state.currentQuestion + 1 === this.state.questions.length;
+  render() {      
+      let isLastQuestion = this.state.currentQuestion + 1 === this.state.questions.length;          
       if(!this.state.quizStarted) {
         return (<QuizNotification headerText={this.state.quizHeader} startQuiz={this.startQuiz}
           info={this.state.quizDetails}/>)
       } else {
       return(
         <Auxillury>
-          <main>
+          <main>            
+            
             <Modal show={this.state.showResultPopup} onCancel={this.cancelPopupHandler}>
               <div>Congratulations!  You scored {this.state.totalCorrectAnswers} out of {this.state.questions.length}</div>
             </Modal>
-
             <Question questionText={this.state.questions[this.state.currentQuestion].questionText} />
             <Answers answers={this.state.questions[this.state.currentQuestion].answers}
                 rightAnswer={this.state.questions[this.state.currentQuestion].rightAnswer}

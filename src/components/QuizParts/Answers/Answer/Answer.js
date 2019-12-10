@@ -1,12 +1,10 @@
 import React from 'react';
 import Auxillury from '../../../../hoc/Auxillury'
-import styles from './Answer.module.css'
 
 const answer = (props) => {
 
   function showAlert(e) {
     e.preventDefault();
-    //alert(e.target.id);
   }
 
   return (
