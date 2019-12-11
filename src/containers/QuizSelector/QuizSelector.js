@@ -7,11 +7,11 @@ class QuizSelector extends Component {
 
     state = {
         quizList: [],
-        quizSelected: false
+        quizSelected: false,
+        quizSet: {}
     }
 
-    componentDidMount() {    
-        // Make a request for a user with a given ID
+    componentDidMount() {
         let url = 'https://7guwq97hz8.execute-api.us-east-1.amazonaws.com/Prod/';        
         axios.get(url)
           .then(response => {
@@ -25,13 +25,29 @@ class QuizSelector extends Component {
           });
     }
 
-    render() {
-        let quizzes = "";
-        if(this.state.quizList != []) {
-            return <QuizOptions quizList={this.state.quizList} />
-        }
-        else if(this.state.quizSelected) {
-            return <QuizRunner />
+    fetchQuizSetForQuizId = (quizId) => {
+        let url = 'https://afq77s0oa0.execute-api.us-east-1.amazonaws.com/Prod?id='+quizId;
+        axios.get(url)
+          .then(response => {
+            alert(response.data)
+            this.setState({quizSet: response.data.Item});
+            this.setState({quizSelected:true});
+          }).catch(function (error) {
+            // handle error
+            console.log(error);
+          })
+          .finally(function () {
+            // always executed
+          });        
+    }
+
+    render() {                
+        if(this.state.quizList.length > 0 && !this.state.quizSelected) {
+            return <QuizOptions quizList={this.state.quizList} onSelect={this.fetchQuizSetForQuizId}/>
+        } else if(this.state.quizSelected) {
+            return <QuizRunner selectedQuizSet={this.state.quizSet}/>
+        } else {
+            return "";
         }
     }    
 }
