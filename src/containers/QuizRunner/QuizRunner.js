@@ -12,75 +12,7 @@ class QuizRunner extends Component {
       question: [],
       quizStarted: false,
       quizHeader: 'General AWS Quiz',
-      quizDetails: 'S3 is one of the most important topics in AWS cloud.  This quiz will test you S3 knowledge.',
-      questions: [
-        {
-          questionId:1,
-          questionText: "What is Docker",
-          answers : [
-            'Docking station for Apple products',
-            'A platform as a service product',
-            'Propreity AWS product to show current clients connected to AWS',
-            'All of the above'
-          ],
-          rightAnswer: '2'
-      },
-      {
-        questionId:2,
-        questionText: "What is EC2",
-        answers : [
-          'A Short Circuit',
-          'Amazon movie',
-          'Elastic Cloud Compute',
-          'File Extension'
-        ],
-        rightAnswer: '3'
-      },
-      {
-        questionId:3,
-        questionText: "What is Cloud Watch",
-        answers : [
-          'A Logging mechanism in AWS',
-          'Drone Technology',
-          'Amazon movie',
-          'Latest binoculars launched by Amazon'
-        ],
-        rightAnswer: '1'
-      },
-      {
-        questionId:4,
-        questionText: "What is API Gateway",
-        answers : [
-          'Allows creating of APIs',
-          'Allows caching of API responses',
-          'Allows monitoring and securing REST and WebSocket APIs at any scale.',
-          'All of the above'
-        ],
-        rightAnswer: '4'
-      },
-      {
-        questionId:5,
-        questionText: "Which of the following is a message queue or transaction system for distributed Internet-based applications?",
-        answers : [
-          'Amazon Elastic Compute Cloud',
-          'Amazon Simple Queue Service',
-          'Amazon Simple Notification Service',
-          'Amazon Simple Storage System'
-        ],
-        rightAnswer: '2'
-      },
-      {
-        questionId:6,
-        questionText: "Which of the following is a Web service that can publish messages from an application and deliver them to other applications or to subscribers?",
-        answers : [
-          'Amazon Elastic Compute Cloud',
-          'Amazon Simple Queue Service',
-          'Amazon Simple Notification Service',
-          'Amazon Simple Storage System'
-        ],
-        rightAnswer: '3'
-      }
-    ],
+      quizDetails: 'S3 is one of the most important topics in AWS cloud.  This quiz will test you S3 knowledge.',      
       currentQuestion:0,
       showResultPopup: false,
       totalCorrectAnswers : 0
@@ -88,10 +20,7 @@ class QuizRunner extends Component {
   }
 
   componentDidMount() {
-    //this.setState({quizDetails:this.props.selectedQuizSet.quizDetails});
     this.setState({quizHeader:this.props.selectedQuizSet.quizName});
-    //let questionSet = JSON.parse(this.props.selectedQuizSet);
-    //alert(questionSet[0].question);
     let question = [];
     JSON.parse(this.props.selectedQuizSet.data).map((questionSet, index) => {
       question.push({
