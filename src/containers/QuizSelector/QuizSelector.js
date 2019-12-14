@@ -29,8 +29,8 @@ class QuizSelector extends Component {
         let url = 'https://afq77s0oa0.execute-api.us-east-1.amazonaws.com/Prod?id='+quizId;
         axios.get(url)
           .then(response => {
-            alert(response.data)
-            this.setState({quizSet: response.data.Item});
+            //alert(response.data)
+            this.setState({quizSet: response});
             this.setState({quizSelected:true});
           }).catch(function (error) {
             // handle error
@@ -42,9 +42,11 @@ class QuizSelector extends Component {
     }
 
     render() {                
-        if(this.state.quizList.length > 0 && !this.state.quizSelected) {
+        if(this.state.quizList.length > 0 && !this.state.quizSelected) {            
             return <QuizOptions quizList={this.state.quizList} onSelect={this.fetchQuizSetForQuizId}/>
         } else if(this.state.quizSelected) {
+            alert("aa "+this.state.quizSet);
+            // alert("bb ->"+JSON.parse(this.state.quizSet));
             return <QuizRunner selectedQuizSet={this.state.quizSet}/>
         } else {
             return "";

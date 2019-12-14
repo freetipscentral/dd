@@ -4,14 +4,12 @@ import QuizNotification from '../../components/QuizParts/QuizNotification/QuizNo
 import Question from '../../components/QuizParts/Question/Question'
 import Answers from '../../components/QuizParts/Answers/Answers'
 import Modal from '../../components/UI/Modal/Modal'
-import styles from './QuizRunner.module.css'
-import axios from 'axios'; 
-import QuizOptions from '../../components/QuizOptions/QuizOptions'
 
 class QuizRunner extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      question: [],
       quizStarted: false,
       quizHeader: 'General AWS Quiz',
       quizDetails: 'S3 is one of the most important topics in AWS cloud.  This quiz will test you S3 knowledge.',
@@ -20,10 +18,10 @@ class QuizRunner extends Component {
           questionId:1,
           questionText: "What is Docker",
           answers : [
-            {label: 'Docking station for Apple products'},
-            {label: 'A platform as a service product'},
-            {label: 'Propreity AWS product to show current clients connected to AWS'},
-            {label: 'All of the above'}
+            'Docking station for Apple products',
+            'A platform as a service product',
+            'Propreity AWS product to show current clients connected to AWS',
+            'All of the above'
           ],
           rightAnswer: '2'
       },
@@ -31,10 +29,10 @@ class QuizRunner extends Component {
         questionId:2,
         questionText: "What is EC2",
         answers : [
-          {label: 'A Short Circuit'},
-          {label: 'Amazon movie'},
-          {label: 'Elastic Cloud Compute'},
-          {label: 'File Extension'}
+          'A Short Circuit',
+          'Amazon movie',
+          'Elastic Cloud Compute',
+          'File Extension'
         ],
         rightAnswer: '3'
       },
@@ -42,10 +40,10 @@ class QuizRunner extends Component {
         questionId:3,
         questionText: "What is Cloud Watch",
         answers : [
-          {label: 'A Logging mechanism in AWS'},
-          {label: 'Drone Technology'},
-          {label: 'Amazon movie'},
-          {label: 'Latest binoculars launched by Amazon'}
+          'A Logging mechanism in AWS',
+          'Drone Technology',
+          'Amazon movie',
+          'Latest binoculars launched by Amazon'
         ],
         rightAnswer: '1'
       },
@@ -53,10 +51,10 @@ class QuizRunner extends Component {
         questionId:4,
         questionText: "What is API Gateway",
         answers : [
-          {label: 'Allows creating of APIs'},
-          {label: 'Allows caching of API responses'},
-          {label: 'Allows monitoring and securing REST and WebSocket APIs at any scale.'},
-          {label: 'All of the above'}
+          'Allows creating of APIs',
+          'Allows caching of API responses',
+          'Allows monitoring and securing REST and WebSocket APIs at any scale.',
+          'All of the above'
         ],
         rightAnswer: '4'
       },
@@ -64,10 +62,10 @@ class QuizRunner extends Component {
         questionId:5,
         questionText: "Which of the following is a message queue or transaction system for distributed Internet-based applications?",
         answers : [
-          {label: 'Amazon Elastic Compute Cloud'},
-          {label: 'Amazon Simple Queue Service'},
-          {label: 'Amazon Simple Notification Service'},
-          {label: 'Amazon Simple Storage System'}
+          'Amazon Elastic Compute Cloud',
+          'Amazon Simple Queue Service',
+          'Amazon Simple Notification Service',
+          'Amazon Simple Storage System'
         ],
         rightAnswer: '2'
       },
@@ -75,10 +73,10 @@ class QuizRunner extends Component {
         questionId:6,
         questionText: "Which of the following is a Web service that can publish messages from an application and deliver them to other applications or to subscribers?",
         answers : [
-          {label: 'Amazon Elastic Compute Cloud'},
-          {label: 'Amazon Simple Queue Service'},
-          {label: 'Amazon Simple Notification Service'},
-          {label: 'Amazon Simple Storage System'}
+          'Amazon Elastic Compute Cloud',
+          'Amazon Simple Queue Service',
+          'Amazon Simple Notification Service',
+          'Amazon Simple Storage System'
         ],
         rightAnswer: '3'
       }
@@ -90,10 +88,21 @@ class QuizRunner extends Component {
   }
 
   componentDidMount() {
-    this.setState({quizDetails:this.props.selectedQuizSet.quizDetails});
+    //this.setState({quizDetails:this.props.selectedQuizSet.quizDetails});
     this.setState({quizHeader:this.props.selectedQuizSet.quizName});
-    let questionSet = JSON.parse(this.props.selectedQuizSet.questionSet);
-    alert(questionSet[0].question);
+    //let questionSet = JSON.parse(this.props.selectedQuizSet);
+    //alert(questionSet[0].question);
+    let question = [];
+    JSON.parse(this.props.selectedQuizSet.data).map((questionSet, index) => {
+      question.push({
+        questionId:index+1,
+        questionText: questionSet.question,
+        answers: questionSet.answers,
+        rightAnswer: questionSet.rightAnswer
+      });
+    });
+
+    this.setState({question:question});
 
   }
 
@@ -121,7 +130,7 @@ class QuizRunner extends Component {
   }
 
   render() {      
-      let isLastQuestion = this.state.currentQuestion + 1 === this.state.questions.length;          
+      let isLastQuestion = this.state.currentQuestion + 1 === this.state.question.length;          
       if(!this.state.quizStarted) {
         return (<QuizNotification headerText={this.state.quizHeader} startQuiz={this.startQuiz}
           info={this.state.quizDetails}/>)
@@ -131,13 +140,13 @@ class QuizRunner extends Component {
           <main>            
             
             <Modal show={this.state.showResultPopup} onCancel={this.cancelPopupHandler}>
-              <div>Congratulations!  You scored {this.state.totalCorrectAnswers} out of {this.state.questions.length}</div>
+              <div>Congratulations!  You scored {this.state.totalCorrectAnswers} out of {this.state.question.length}</div>
             </Modal>
-            <Question questionText={this.state.questions[this.state.currentQuestion].questionText} />
-            <Answers answers={this.state.questions[this.state.currentQuestion].answers}
-                rightAnswer={this.state.questions[this.state.currentQuestion].rightAnswer}
+            <Question questionText={this.state.question[this.state.currentQuestion].questionText} />
+            <Answers answers={this.state.question[this.state.currentQuestion].answers}
+                rightAnswer={this.state.question[this.state.currentQuestion].rightAnswer}
                 nextQuestion={this.nextQuestion}
-                questionId={this.state.questions[this.state.currentQuestion].questionId}
+                questionId={this.state.question[this.state.currentQuestion].questionId}
                 isLastQuestion = {isLastQuestion}
                 showResult={this.showResult}
                 updateCorrectAnswers={this.updateCorrectAnswers}/>

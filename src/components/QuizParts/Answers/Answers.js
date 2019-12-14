@@ -126,7 +126,7 @@ class Answers extends Component {
     const answerSet = this.props.answers.map((eans, i) => {
       return (
           <Answer
-            label={eans.label}
+            label={eans}
             key={i}
             id={i+1}
             classToApply={this.state.ansStyles[i]}
