@@ -4,16 +4,24 @@ import QuizSelector from './containers/QuizSelector/QuizSelector';
 import Navbar from './components/Navbar/Navbar';
 import HomePage from './components/Homepage/Homepage';
 import Footer from './components/Footer/Footer'
+import {BrowserRouter,  Route} from 'react-router-dom'
+import AboutUs from './components/AboutUs/AboutUs'
+import Faq from './components/Faq/Faq'
 
 function App() {
   return (
     
-    <div>
+    <BrowserRouter>
         <Navbar />
-        <HomePage /> 
-        <QuizSelector />
+        <Route path='/aboutUs' exact component={AboutUs} />
+        <Route path='/' exact component={HomePage} />
+        <Route path='/faq' exact component={Faq} />
+        
+        {/* <HomePage /> 
+        <QuizSelector /> */}
         <Footer />
-    </div>    
+        
+    </BrowserRouter>    
   );
 }
 
