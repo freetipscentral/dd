@@ -3,6 +3,7 @@ import Layout from './components/Layout/Layout';
 import QuizSelector from './containers/QuizSelector/QuizSelector';
 import Navbar from './components/Navbar/Navbar';
 import HomePage from './components/Homepage/Homepage';
+import Footer from './components/Footer/Footer'
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <Navbar />
         <HomePage /> 
         <QuizSelector />
+        <Footer />
     </div>    
   );
 }
