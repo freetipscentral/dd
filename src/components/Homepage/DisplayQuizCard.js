@@ -15,7 +15,7 @@ const displayQuizCard = props => {
                     <Card.Text>
                         {props.quizDetails}
                     </Card.Text>
-                    <Button variant="primary">Start Quiz</Button>
+                    <Button variant="primary" onClick={() => {props.quizSelect(props.id)}}>Start Quiz</Button>
                 </Card.Body>
                 <Card.Footer>
                     <small className="text-muted">Last updated 3 mins ago</small>

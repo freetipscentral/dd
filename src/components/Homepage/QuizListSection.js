@@ -26,7 +26,7 @@ class QuizListSection extends Component {
 
     render() {
         return (
-            <QuizCard quizList={this.state.quizList}/>
+            <QuizCard quizList={this.state.quizList} quizSelect={this.props.quizSelect}/>
         )
     }
 }

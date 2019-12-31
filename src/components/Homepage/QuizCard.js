@@ -8,7 +8,7 @@ const quizCard = props => {
     
     const quizzes = props.quizList.map((eachQuiz, i) => {
         return (
-            <DisplayQuizCard quizName={eachQuiz.quizName} id = {eachQuiz.id} quizDetails = {eachQuiz.quizDetails}/>            
+            <DisplayQuizCard quizName={eachQuiz.quizName} id = {eachQuiz.id} quizDetails = {eachQuiz.quizDetails} quizSelect={props.quizSelect}/>            
         )
     });
     return (

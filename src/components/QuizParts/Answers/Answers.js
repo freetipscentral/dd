@@ -3,7 +3,6 @@ import Answer from './Answer/Answer';
 import ActionButton from '../ActionButton/ActionButton';
 import styles from './Answers.module.css'
 import Grid from '@material-ui/core/Grid';
-import Divider from '@material-ui/core/Divider';
 import Container from '@material-ui/core/Container';
 
 class Answers extends Component {
@@ -42,7 +41,7 @@ class Answers extends Component {
       {
        margin: '20px',
        border: '1px solid green',
-       borderRadius: '25px !important',
+      //  borderRadius: '25px !important',
        color: 'white',
        backgroundColor: '#008CBA',
        padding: '20px',
