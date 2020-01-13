@@ -3,6 +3,8 @@ import HomePageTopSection from './HomePageTopSection';
 import QuizListSection from './QuizListSection';
 import axios from 'axios'; 
 import QuizRunner from '../../containers/QuizRunner/QuizRunner';
+import {connect} from 'react-redux';
+import {retreiveQuizList} from '../../store/actions/actions'
 
 class HomePage extends Component {
 
@@ -41,4 +43,16 @@ class HomePage extends Component {
     }
 };
 
-export default HomePage;
+const mapStateToProps = state => {
+    return {
+        quizList: state.quizList
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        fetchQuizList:  dispatch(retreiveQuizList())
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomePage);

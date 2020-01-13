@@ -1,11 +1,10 @@
 import React from 'react'
 import Header from '../Header/Header';
-import ActionButton from '../ActionButton/ActionButton';
 import Grid from '@material-ui/core/Grid';
+import Button from 'react-bootstrap/Button';
 
 const quizNotification = (props) => {
   return (
-
     <Grid
       container
       direction="row"
@@ -18,9 +17,12 @@ const quizNotification = (props) => {
       
       <Grid item xs={12} justify="center">
         <Grid container justify="center" >
-          <ActionButton clickAction={props.startQuiz} buttonLabel='Start Quiz'/>
+          Click on 'Start Quiz' button to start the quiz
+          <br/>
+          <Button onClick={props.startQuiz}>Start Quiz</Button>
         </Grid>
       </Grid>
+      
     </Grid>
   )
 }
