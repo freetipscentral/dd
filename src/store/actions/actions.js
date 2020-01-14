@@ -1,3 +1,5 @@
+import axios from 'axios'; 
+
 export const QUIZ_STARTED = 'QUIZ_STARTED';
 export const QUIZ_FINISHED = 'QUIZ_FINISHED';
 
@@ -6,9 +8,22 @@ export const QUIZ_LIST_RETREIVAL_SUCCESS = 'QUIZ_LIST_RETREIVAL_SUCCESS';
 export const QUIZ_LIST_RETREIVAL_FAILURE = 'QUIZ_LIST_RETREIVAL_FAILURE';
 
 export const retreiveQuizList = () => {
-    return {
-        type: QUIZ_LIST_RETREIVAL_START
-    }
+
+    return function(dispatch) {
+        dispatch({type: QUIZ_LIST_RETREIVAL_START});
+        let url = 'https://7guwq97hz8.execute-api.us-east-1.amazonaws.com/Prod/';        
+        return axios.get(url)
+          .then(response => {
+            dispatch(quizListRetreived(response.data))
+          }).catch(function (error) {
+            // handle error
+            console.log(error);
+            dispatch(quizListFailedToLoad())
+          })
+          .finally(function () {
+            // always executed
+          });
+      };
 }
 
 export const quizListRetreived = (payload) => {

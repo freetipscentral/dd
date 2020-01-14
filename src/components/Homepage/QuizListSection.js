@@ -1,34 +1,37 @@
 import React, {Component} from 'react'
 import QuizCard from './QuizCard'
-import axios from 'axios'; 
+import {connect} from 'react-redux';
+import {retreiveQuizList} from '../../store/actions/actions'
 
 class QuizListSection extends Component {
 
     state = {
-        quizList: [],
         quizSelected: false,
         quizSet: {}
     }
 
     componentDidMount() {
-        let url = 'https://7guwq97hz8.execute-api.us-east-1.amazonaws.com/Prod/';        
-        axios.get(url)
-          .then(response => {
-            this.setState({quizList: response.data});
-          }).catch(function (error) {
-            // handle error
-            console.log(error);
-          })
-          .finally(function () {
-            // always executed
-          });
+        this.props.loadQuizList();
     }
 
     render() {
         return (
-            <QuizCard quizList={this.state.quizList} quizSelect={this.props.quizSelect}/>
+            <QuizCard quizList={this.props.quizList} quizSelect={this.props.quizSelect}/>
         )
     }
 }
 
-export default QuizListSection;
+const mapStateToProps = state => {
+    return {
+        loadingQuizList: state.loadingQuizList,
+        quizList: state.quizList
+    }       
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        loadQuizList: () => dispatch(retreiveQuizList())
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(QuizListSection);
