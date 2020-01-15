@@ -2,11 +2,11 @@ import React from 'react';
 import Spinner from 'react-bootstrap/Spinner'
 import Modal from 'react-bootstrap/Modal'
 
-const loaderModal = () => (
+const loaderModal = (props) => (
 
     <Modal.Dialog>
         <Modal.Header closeButton>
-            <Modal.Title>Loading Quiz List</Modal.Title>
+            <Modal.Title>{props.message}</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>             

@@ -2,7 +2,6 @@ import React, {Component} from 'react'
 import QuizCard from './QuizCard'
 import {connect} from 'react-redux';
 import {retreiveQuizList} from '../../store/actions/actions'
-import Spinner from 'react-bootstrap/Spinner'
 import LoaderModal from './LoaderModal'
 
 class QuizListSection extends Component {
@@ -20,7 +19,7 @@ class QuizListSection extends Component {
         const xx=false
         if(this.props.loadingQuizList) {
             return (
-                <LoaderModal />
+                <LoaderModal message='Loading Quiz List'/>
             )
         }
         else return (
