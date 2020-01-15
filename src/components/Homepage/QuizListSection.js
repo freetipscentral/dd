@@ -6,17 +6,11 @@ import LoaderModal from './LoaderModal'
 
 class QuizListSection extends Component {
 
-    state = {
-        quizSelected: false,
-        quizSet: {}
-    }
-
     componentDidMount() {
         this.props.loadQuizList();
     }
 
     render() {
-        const xx=false
         if(this.props.loadingQuizList) {
             return (
                 <LoaderModal message='Loading Quiz List'/>
