@@ -6,7 +6,8 @@ const initialState = {
     loadingQuizList: false,
     quizSelected: false,
     selectedQuizSet: {},
-    loadingQuizSet: false
+    loadingQuizSet: false,
+    quizInProgress: false
 };
 
 const reducer = (state = initialState, action) => {
@@ -48,6 +49,16 @@ const reducer = (state = initialState, action) => {
                 loadingQuizSet: false,
                 errorMessage: 'Error retreiving the Quiz set'
             }
+        case actionTypes.QUIZ_STARTED:
+            return {
+                ...state,
+                quizInProgress: true
+            }
+        case actionTypes.QUIZ_FINISHED:
+            return {
+                ...state,
+                quizInProgress: false
+            }       
         default:
             return state
     }

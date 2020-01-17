@@ -4,13 +4,14 @@ import QuizNotification from '../../components/QuizParts/QuizNotification/QuizNo
 import Question from '../../components/QuizParts/Question/Question'
 import Answers from '../../components/QuizParts/Answers/Answers'
 import Modal from '../../components/UI/Modal/Modal'
+import {startQuiz} from '../../store/actions/actions'
+import {connect} from 'react-redux'
 
 class QuizRunner extends Component {
   constructor(props) {
     super(props);
     this.state = {
       question: [],
-      quizStarted: false,
       quizHeader: 'General AWS Quiz',
       quizDetails: 'S3 is one of the most important topics in AWS cloud.  This quiz will test you S3 knowledge.',      
       currentQuestion:0,
@@ -32,7 +33,6 @@ class QuizRunner extends Component {
     });
 
     this.setState({question:question});
-
   }
 
   nextQuestion = (e) => {
@@ -45,7 +45,7 @@ class QuizRunner extends Component {
   }
 
   startQuiz = (e) => {
-    this.setState({quizStarted: true});
+    this.props.startQuiz();
   }
 
   cancelPopupHandler = () => {
@@ -60,16 +60,15 @@ class QuizRunner extends Component {
 
   render() {      
       let isLastQuestion = this.state.currentQuestion + 1 === this.state.question.length;          
-      if(!this.state.quizStarted) {
+      if(!this.props.quizInProgress) {
         return (<QuizNotification headerText={this.state.quizHeader} startQuiz={this.startQuiz}
           info={this.state.quizDetails}/>)
       } else {
       return(
         <Auxillury>
-          <main>            
-            
+          <main>                        
             <Modal show={this.state.showResultPopup} onCancel={this.cancelPopupHandler}>
-              <div>Congratulations!  You scored {this.state.totalCorrectAnswers} out of {this.state.question.length}</div>
+              <div>You scored {this.state.totalCorrectAnswers} out of {this.state.question.length}</div>
             </Modal>
             <Question questionText={this.state.question[this.state.currentQuestion].questionText} />
             <Answers answers={this.state.question[this.state.currentQuestion].answers}
@@ -86,4 +85,16 @@ class QuizRunner extends Component {
   }
 }
 
-export default QuizRunner;
+const mapStateToProps = state => {
+  return {
+      quizInProgress: state.quizInProgress
+  }       
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+      startQuiz: () => dispatch(startQuiz())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(QuizRunner);

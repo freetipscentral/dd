@@ -77,7 +77,7 @@ export const quizListFailedToLoad = () => {
     }
 }
 
-export const quizStarted = () => {
+export const startQuiz = () => {
     return {
         type: QUIZ_STARTED        
     }
