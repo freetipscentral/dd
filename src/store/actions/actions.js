@@ -11,6 +11,14 @@ export const QUIZ_SET_RETREIVAL_START = 'QUIZ_SET_RETREIVAL_START';
 export const QUIZ_SET_RETREIVAL_SUCCESS = 'QUIZ_SET_RETREIVAL_SUCCESS';
 export const QUIZ_SET_RETREIVAL_FAILURE = 'QUIZ_SET_RETREIVAL_FAILURE';
 
+export const SHOW_QUIZ_RESULT = 'SHOW_QUIZ_RESULT';
+
+export const showQuizResult = () => {
+  return {
+      type: SHOW_QUIZ_RESULT
+  }
+}
+
 export const quizSetRetreived = (payload) => {
     return {
         type: QUIZ_SET_RETREIVAL_SUCCESS,

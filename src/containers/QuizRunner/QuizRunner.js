@@ -4,13 +4,13 @@ import QuizNotification from '../../components/QuizParts/QuizNotification/QuizNo
 import Question from '../../components/QuizParts/Question/Question'
 import Answers from '../../components/QuizParts/Answers/Answers'
 import Modal from '../../components/UI/Modal/Modal'
-import {startQuiz} from '../../store/actions/actions'
+import {startQuiz, showQuizResult} from '../../store/actions/actions'
 import {connect} from 'react-redux'
 
 class QuizRunner extends Component {
   constructor(props) {
     super(props);
-    this.state = {
+    this.state = {  
       question: [],
       quizHeader: 'General AWS Quiz',
       quizDetails: 'S3 is one of the most important topics in AWS cloud.  This quiz will test you S3 knowledge.',      
@@ -33,6 +33,7 @@ class QuizRunner extends Component {
     });
 
     this.setState({question:question});
+    this.props.startQuiz();
   }
 
   nextQuestion = (e) => {
@@ -41,6 +42,7 @@ class QuizRunner extends Component {
   }
 
   showResult = (e) => {
+    this.props.showResult();
     this.setState({showResultPopup: true});
   }
 
@@ -61,8 +63,7 @@ class QuizRunner extends Component {
   render() {      
       let isLastQuestion = this.state.currentQuestion + 1 === this.state.question.length;          
       if(!this.props.quizInProgress) {
-        return (<QuizNotification headerText={this.state.quizHeader} startQuiz={this.startQuiz}
-          info={this.state.quizDetails}/>)
+        return (null);
       } else {
       return(
         <Auxillury>
@@ -87,13 +88,15 @@ class QuizRunner extends Component {
 
 const mapStateToProps = state => {
   return {
-      quizInProgress: state.quizInProgress
+      quizInProgress: state.quizInProgress,
+      showResult: state.quizResult
   }       
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-      startQuiz: () => dispatch(startQuiz())
+      startQuiz: () => dispatch(startQuiz()),
+      showResult: () => dispatch(showQuizResult())
   }
 }
 
