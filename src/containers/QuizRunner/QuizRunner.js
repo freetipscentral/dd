@@ -42,7 +42,6 @@ class QuizRunner extends Component {
   }
 
   showResult = (e) => {
-    this.props.showResult();
     this.setState({showResultPopup: true});
   }
 
