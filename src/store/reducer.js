@@ -8,7 +8,7 @@ const initialState = {
     selectedQuizSet: {},
     loadingQuizSet: false,
     quizInProgress: false,
-    showQuizResult: false
+    showQuizResultPopup: false
 };
 
 const reducer = (state = initialState, action) => {
@@ -63,8 +63,13 @@ const reducer = (state = initialState, action) => {
         case actionTypes.SHOW_QUIZ_RESULT:
             return {
                 ...state,
-                showQuizResult: true
-            }      
+                showQuizResultPopup: true
+            }
+        case actionTypes.DONT_SHOW_QUIZ_RESULT:
+            return {
+                ...state,
+                showQuizResultPopup: false
+            }    
         default:
             return state
     }
