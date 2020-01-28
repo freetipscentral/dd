@@ -10,12 +10,18 @@ export const QUIZ_LIST_RETREIVAL_FAILURE = 'QUIZ_LIST_RETREIVAL_FAILURE';
 export const QUIZ_SET_RETREIVAL_START = 'QUIZ_SET_RETREIVAL_START';
 export const QUIZ_SET_RETREIVAL_SUCCESS = 'QUIZ_SET_RETREIVAL_SUCCESS';
 export const QUIZ_SET_RETREIVAL_FAILURE = 'QUIZ_SET_RETREIVAL_FAILURE';
-
+export const DONT_SHOW_QUIZ_RESULT = 'DONT_SHOW_QUIZ_RESULT';
 export const SHOW_QUIZ_RESULT = 'SHOW_QUIZ_RESULT';
 
 export const showQuizResult = () => {
   return {
       type: SHOW_QUIZ_RESULT
+  }
+}
+
+export const dontShowQuizResult = () => {
+  return {
+      type: DONT_SHOW_QUIZ_RESULT
   }
 }
 

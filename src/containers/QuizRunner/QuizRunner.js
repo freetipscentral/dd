@@ -4,7 +4,7 @@ import QuizNotification from '../../components/QuizParts/QuizNotification/QuizNo
 import Question from '../../components/QuizParts/Question/Question'
 import Answers from '../../components/QuizParts/Answers/Answers'
 import Modal from '../../components/UI/Modal/Modal'
-import {startQuiz, showQuizResult} from '../../store/actions/actions'
+import {startQuiz, showQuizResult, dontShowQuizResult} from '../../store/actions/actions'
 import {connect} from 'react-redux'
 
 class QuizRunner extends Component {
@@ -14,8 +14,7 @@ class QuizRunner extends Component {
       question: [],
       quizHeader: 'General AWS Quiz',
       quizDetails: 'S3 is one of the most important topics in AWS cloud.  This quiz will test you S3 knowledge.',      
-      currentQuestion:0,
-      showResultPopup: false,
+      currentQuestion: 0,
       totalCorrectAnswers : 0
     }
   }
@@ -42,7 +41,7 @@ class QuizRunner extends Component {
   }
 
   showResult = (e) => {
-    this.setState({showResultPopup: true});
+    this.props.showResult();
   }
 
   startQuiz = (e) => {
@@ -50,7 +49,8 @@ class QuizRunner extends Component {
   }
 
   cancelPopupHandler = () => {
-    this.setState({showResultPopup: false, currentQuestion:0, totalCorrectAnswers:0});
+    this.props.dontShowQuizResult();
+    this.setState({currentQuestion:0, totalCorrectAnswers:0});
   } 
 
   updateCorrectAnswers = (e) => {
@@ -59,15 +59,16 @@ class QuizRunner extends Component {
     this.setState({totalCorrectAnswers:updateCorrectAnswers});
   }
 
-  render() {      
-      let isLastQuestion = this.state.currentQuestion + 1 === this.state.question.length;          
+  render() {
+      
+      let isLastQuestion = this.state.currentQuestion + 1 === this.state.question.length;
       if(!this.props.quizInProgress) {
         return (null);
       } else {
       return(
         <Auxillury>
-          <main>                        
-            <Modal show={this.state.showResultPopup} onCancel={this.cancelPopupHandler}>
+          <main>
+            <Modal show={this.props.showQuizResultPopup} onCancel={this.cancelPopupHandler}>
               <div>You scored {this.state.totalCorrectAnswers} out of {this.state.question.length}</div>
             </Modal>
             <Question questionText={this.state.question[this.state.currentQuestion].questionText} />
@@ -88,14 +89,15 @@ class QuizRunner extends Component {
 const mapStateToProps = state => {
   return {
       quizInProgress: state.quizInProgress,
-      showResult: state.quizResult
+      showQuizResultPopup: state.showQuizResultPopup
   }       
 }
 
 const mapDispatchToProps = dispatch => {
   return {
       startQuiz: () => dispatch(startQuiz()),
-      showResult: () => dispatch(showQuizResult())
+      showResult: () => dispatch(showQuizResult()),
+      dontShowQuizResult: () => dispatch(dontShowQuizResult())
   }
 }
 
