@@ -2,7 +2,7 @@ import React from 'react'
 import Jumbotron from 'react-bootstrap/Jumbotron';
 
 const homePageTopSection = props => (
-    <Jumbotron style={{backgroundColor: '#4a154b', color:'Orange'}}>
+    <Jumbotron style={{backgroundColor: '#0074d9', color:'white'}}>
         <h1>Howdy AWS Enthusiasts!</h1>
         <br/>
         <p>

@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button';
 
 const displayQuizCard = props => {
     const borderStyle = { borderColor:'Orange', borderWidth: '.2rem' };
-    const cardTitleStyle = {backgroundColor: '#4a154b', color:'Orange', textAlign: 'center' };
+    const cardTitleStyle = {backgroundColor: '#0074d9', color:'White', textAlign: 'center' };
     
     return (
         <Col sm={12} lg={4} md={6}>
