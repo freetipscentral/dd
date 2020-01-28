@@ -12,4 +12,4 @@ const footer = props =>  (
     </footer>
 );
 
-export default footer;
+export default footer;  
