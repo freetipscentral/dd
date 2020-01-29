@@ -6,6 +6,7 @@ import Answers from '../../components/QuizParts/Answers/Answers'
 import Modal from '../../components/UI/Modal/Modal'
 import {startQuiz, showQuizResult, dontShowQuizResult} from '../../store/actions/actions'
 import {connect} from 'react-redux'
+import ResultModal from './ResultModal'
 
 class QuizRunner extends Component {
   constructor(props) {
@@ -65,23 +66,36 @@ class QuizRunner extends Component {
       if(!this.props.quizInProgress) {
         return (null);
       } else {
-      return(
-        <Auxillury>
-          <main>
-            <Modal show={this.props.showQuizResultPopup} onCancel={this.cancelPopupHandler}>
-              <div>You scored {this.state.totalCorrectAnswers} out of {this.state.question.length}</div>
-            </Modal>
-            <Question questionText={this.state.question[this.state.currentQuestion].questionText} />
-            <Answers answers={this.state.question[this.state.currentQuestion].answers}
-                rightAnswer={this.state.question[this.state.currentQuestion].rightAnswer}
-                nextQuestion={this.nextQuestion}
-                questionId={this.state.question[this.state.currentQuestion].questionId}
-                isLastQuestion = {isLastQuestion}
-                showResult={this.showResult}
-                updateCorrectAnswers={this.updateCorrectAnswers}/>
-          </main>
-        </Auxillury>
-      )
+      let detailsToShow = '';
+      if(this.props.showQuizResultPopup) {
+
+          return (
+                  <ResultModal show={this.props.showQuizResultPopup} 
+                  totalCorrectAnswers={this.state.totalCorrectAnswers}
+                  totalQuestions={this.state.question.length}
+                  onCancel={this.cancelPopupHandler}>              
+                  </ResultModal>
+          ) 
+        } else {
+          
+          return (
+            <Auxillury>
+              <main>
+                
+                <Question questionText={this.state.question[this.state.currentQuestion].questionText} />
+                <Answers answers={this.state.question[this.state.currentQuestion].answers}
+                    rightAnswer={this.state.question[this.state.currentQuestion].rightAnswer}
+                    nextQuestion={this.nextQuestion}
+                    questionId={this.state.question[this.state.currentQuestion].questionId}
+                    isLastQuestion = {isLastQuestion}
+                    showResult={this.showResult}
+                    updateCorrectAnswers={this.updateCorrectAnswers}/>
+              </main>
+            </Auxillury>
+        )
+      } 
+
+      
     }
   }
 }
