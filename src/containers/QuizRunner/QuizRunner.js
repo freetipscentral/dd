@@ -1,10 +1,8 @@
 import React, {Component} from 'react'
 import Auxillury from '../../hoc/Auxillury'
-import QuizNotification from '../../components/QuizParts/QuizNotification/QuizNotification'
 import Question from '../../components/QuizParts/Question/Question'
 import Answers from '../../components/QuizParts/Answers/Answers'
-import Modal from '../../components/UI/Modal/Modal'
-import {startQuiz, showQuizResult, dontShowQuizResult} from '../../store/actions/actions'
+import {startQuiz, showQuizResult, dontShowQuizResult, reinitializeQuiz} from '../../store/actions/actions'
 import {connect} from 'react-redux'
 import ResultModal from './ResultModal'
 
@@ -16,7 +14,8 @@ class QuizRunner extends Component {
       quizHeader: 'General AWS Quiz',
       quizDetails: 'S3 is one of the most important topics in AWS cloud.  This quiz will test you S3 knowledge.',      
       currentQuestion: 0,
-      totalCorrectAnswers : 0
+      totalCorrectAnswers : 0,
+      redirect: false
     }
   }
 
@@ -52,7 +51,12 @@ class QuizRunner extends Component {
   cancelPopupHandler = () => {
     this.props.dontShowQuizResult();
     this.setState({currentQuestion:0, totalCorrectAnswers:0});
-  } 
+  }
+
+  selectNewQuizHandler = () => {
+    this.props.dontShowQuizResult();
+    this.props.reinitializeQuiz();    
+  }
 
   updateCorrectAnswers = (e) => {
     let currentCorrectAnswers = this.state.totalCorrectAnswers;
@@ -60,28 +64,28 @@ class QuizRunner extends Component {
     this.setState({totalCorrectAnswers:updateCorrectAnswers});
   }
 
-  render() {
-      
+  render() {    
       let isLastQuestion = this.state.currentQuestion + 1 === this.state.question.length;
       if(!this.props.quizInProgress) {
         return (null);
       } else {
       let detailsToShow = '';
       if(this.props.showQuizResultPopup) {
-
           return (
                   <ResultModal show={this.props.showQuizResultPopup} 
-                  totalCorrectAnswers={this.state.totalCorrectAnswers}
-                  totalQuestions={this.state.question.length}
-                  onCancel={this.cancelPopupHandler}>              
+                      totalCorrectAnswers={this.state.totalCorrectAnswers}
+                      totalQuestions={this.state.question.length}
+                      onCancel={this.cancelPopupHandler}
+                      selectNewQuiz={this.selectNewQuizHandler}>
                   </ResultModal>
           ) 
-        } else {
-          
+        } else if (this.state.question.length == 0) {
+          return (null);
+        } else {          
           return (
+            
             <Auxillury>
-              <main>
-                
+              <main>                
                 <Question questionText={this.state.question[this.state.currentQuestion].questionText} />
                 <Answers answers={this.state.question[this.state.currentQuestion].answers}
                     rightAnswer={this.state.question[this.state.currentQuestion].rightAnswer}
@@ -93,9 +97,7 @@ class QuizRunner extends Component {
               </main>
             </Auxillury>
         )
-      } 
-
-      
+      }       
     }
   }
 }
@@ -111,7 +113,8 @@ const mapDispatchToProps = dispatch => {
   return {
       startQuiz: () => dispatch(startQuiz()),
       showResult: () => dispatch(showQuizResult()),
-      dontShowQuizResult: () => dispatch(dontShowQuizResult())
+      dontShowQuizResult: () => dispatch(dontShowQuizResult()),
+      reinitializeQuiz: () => dispatch(reinitializeQuiz())
   }
 }
 

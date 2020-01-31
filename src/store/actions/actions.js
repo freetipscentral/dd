@@ -12,6 +12,7 @@ export const QUIZ_SET_RETREIVAL_SUCCESS = 'QUIZ_SET_RETREIVAL_SUCCESS';
 export const QUIZ_SET_RETREIVAL_FAILURE = 'QUIZ_SET_RETREIVAL_FAILURE';
 export const DONT_SHOW_QUIZ_RESULT = 'DONT_SHOW_QUIZ_RESULT';
 export const SHOW_QUIZ_RESULT = 'SHOW_QUIZ_RESULT';
+export const REINTIALIZE_QUIZ = 'REINTIALIZE_QUIZ';
 
 export const showQuizResult = () => {
   return {
@@ -22,6 +23,12 @@ export const showQuizResult = () => {
 export const dontShowQuizResult = () => {
   return {
       type: DONT_SHOW_QUIZ_RESULT
+  }
+}
+
+export const reinitializeQuiz = () => {
+  return {
+    type: REINTIALIZE_QUIZ
   }
 }
 

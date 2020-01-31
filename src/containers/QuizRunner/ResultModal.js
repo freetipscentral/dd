@@ -14,7 +14,7 @@ const resultModal = (props) => {
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="danger" onClick={props.onCancel}>Try this Quiz Again</Button>
-                    <Button variant="primary">Select New Quiz Quiz</Button>
+                    <Button variant="primary"  onClick={props.selectNewQuiz}>Select New Quiz</Button>
                 </Modal.Footer>
             </Modal.Dialog>
         );

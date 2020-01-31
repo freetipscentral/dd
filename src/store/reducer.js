@@ -69,7 +69,13 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 showQuizResultPopup: false
-            }    
+            }
+        case actionTypes.REINTIALIZE_QUIZ:
+            return {
+                ...state,
+                selectedQuizSet: {},
+                quizSelected: false
+            }                
         default:
             return state
     }
